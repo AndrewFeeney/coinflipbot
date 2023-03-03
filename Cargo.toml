@@ -1,5 +1,5 @@
 [package]
-name = "coinbot"
+name = "coinflipbot"
 version = "0.1.0"
 edition = "2021"
 
