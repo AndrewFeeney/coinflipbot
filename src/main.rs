@@ -1,3 +1,6 @@
+extern crate rand;
+use rand::Rng;
+
 fn main() {
     let result = flip_coin();
 
@@ -14,7 +17,12 @@ enum CoinFlipResult {
 }
 
 fn flip_coin() -> CoinFlipResult {
-    return CoinFlipResult::Heads;
+    let mut random_number_generator = rand::thread_rng();
+    if random_number_generator.gen::<bool>() {
+        return CoinFlipResult::Heads
+    }
+
+    CoinFlipResult::Tails
 }
 
 #[test]
