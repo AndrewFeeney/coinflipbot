@@ -7,6 +7,7 @@ fn main() {
     }
 }
 
+#[derive(PartialEq)]
 enum CoinFlipResult {
     Heads,
     Tails,
@@ -14,4 +15,11 @@ enum CoinFlipResult {
 
 fn flip_coin() -> CoinFlipResult {
     return CoinFlipResult::Heads;
+}
+
+#[test]
+fn test_flip_coin() {
+    let result = flip_coin();
+
+    assert!(result == CoinFlipResult::Heads || result == CoinFlipResult::Tails);
 }
