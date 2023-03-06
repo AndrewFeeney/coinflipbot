@@ -1,7 +1,7 @@
 mod coin;
 
 fn main() {
-    let result = coin::flip_coin();
+    let result = coin::flip();
 
     match result {
         coin::CoinFlipResult::Heads => println!("The result was heads!"),

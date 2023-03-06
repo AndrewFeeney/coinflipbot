@@ -7,7 +7,7 @@ pub enum CoinFlipResult {
     Tails,
 }
 
-pub fn flip_coin() -> CoinFlipResult {
+pub fn flip() -> CoinFlipResult {
     let mut random_number_generator = rand::thread_rng();
     if random_number_generator.gen::<bool>() {
         return CoinFlipResult::Heads
@@ -17,8 +17,8 @@ pub fn flip_coin() -> CoinFlipResult {
 }
 
 #[test]
-fn test_flip_coin() {
-    let result = flip_coin();
+fn test_flip() {
+    let result = flip();
 
     assert!(result == CoinFlipResult::Heads || result == CoinFlipResult::Tails);
 }
