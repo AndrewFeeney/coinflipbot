@@ -1,52 +1,26 @@
 mod coin;
+mod social;
+use social::Postable;
 
 fn main() {
     let result = coin::flip();
 
+    let post_text;
+
     match result {
-        coin::CoinFlipResult::Heads => println!("The result was heads!"),
-        coin::CoinFlipResult::Tails => println!("The result was tails!"),
+        coin::CoinFlipResult::Heads => post_text = "The result was heads!",
+        coin::CoinFlipResult::Tails => post_text = "The result was tails!",
     }
-}
-
-struct SocialMediaPost {
-    text: String,
-}
-struct SocialMediaPostResult {
-    success: bool,
-    post: SocialMediaPost,
-}
-
-struct TestMastodonAccount {
-    posts: Vec<String>,
-}
-
-trait Postable {
-    fn post(&mut self, text: String) -> SocialMediaPostResult;
-}
-
-impl Postable for TestMastodonAccount {
-    fn post(&mut self, text: String) -> SocialMediaPostResult {
-        self.posts.push(text.clone());
-
-        SocialMediaPostResult {
-            success: true,
-            post: SocialMediaPost {
-                text,
-            }
-        }
-    }
-}
-
-#[test]
-fn test_post() {
-    let mut test_account = TestMastodonAccount {
+ 
+    let mut test_account = social::TestMastodonAccount {
         posts: Vec::new(),
     };
 
-    let text = "Hello, world!".to_string();
-    let post_result = test_account.post(text);
+    let post_result = test_account.post(post_text.to_string());
 
-    assert!(post_result.success == true);
-    assert!(post_result.post.text == "Hello, world!");
+    if post_result.success {
+        println!("{:?}", post_result.post.text);
+    } else {
+        println!("The post failed")
+    }
 }
