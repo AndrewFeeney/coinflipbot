@@ -1,5 +1,6 @@
 mod coin;
 mod social;
+mod http;
 use social::Postable;
 
 fn main() {
